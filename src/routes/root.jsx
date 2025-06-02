@@ -1,6 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { getContacts } from "../contacts";
+
+export async function loader() {
+  const contacts = await getContacts();
+  return { contacts };
+}
 
 export default function Root() {
+
+  const data = useLoaderData();
+  const {contacts}=data;
+  console.log(contacts,'datadata')
+
   return (
     <>
       <div className="flex h-screen">
@@ -42,7 +54,7 @@ export default function Root() {
           <ul className="space-y-2">
             <li>
               <Link
-                to="/contacts/1"
+                to={`contacts/1`}
                 className="block px-3 py-2 rounded hover:bg-gray-100 text-gray-700"
               >
                 Your Name
@@ -50,7 +62,7 @@ export default function Root() {
             </li>
             <li>
               <Link
-                to="/contacts/2"
+                to={`contacts/2`}
                 className="block px-3 py-2 rounded hover:bg-gray-100 text-gray-700"
               >
                 Your Friend
@@ -71,6 +83,7 @@ export default function Root() {
       {/* Detail Panel */}
       <div id="detail" className="flex-1 p-6 bg-gray-50">
         {/* Detail content will be rendered here */}
+         <Outlet />
       </div>
     </div>
     </>

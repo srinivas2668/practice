@@ -1,4 +1,4 @@
-import { Link, useNavigation } from "react-router-dom";
+import { Link, Outlet, useNavigation } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 
 
@@ -27,6 +27,7 @@ function App() {
             </div>
           ))}
         </div>
+        <Outlet/>
       </div>
     </>
   );
