@@ -1,17 +1,12 @@
-import { Link, useLoaderData, useNavigation } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { getContacts } from "../contacts";
 
-export async function loader() {
-  const contacts = await getContacts();
-  return { contacts };
-}
 
 export default function Root() {
 
-  const data = useLoaderData();
+  const data=useLoaderData();
   const {contacts}=data;
-  console.log(contacts,'datadata')
+  console.log(contacts,'contactssfd')
 
   return (
     <>

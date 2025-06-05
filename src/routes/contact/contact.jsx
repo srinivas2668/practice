@@ -1,25 +1,20 @@
-import { useLoaderData, Form } from "react-router-dom";
-import { getContact } from "../contacts";
+import { Form, useLoaderData } from "react-router-dom";
 
-export async function loader({ params }) {
-  const contact = await getContact(params.contactId); // must use params
-  return { contact };
-}
 
-export default function Contact() {
-  const { contact } = useLoaderData(); // ✅ must use this to get data from loader
-
+export default function objData() {
+  const data=useLoaderData();
+  const {objData}=data;
   return (
     <div
-      id="contact"
+      id="objData"
       className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md flex gap-6 items-start"
     >
       <div>
         <img
-          key={contact.avatar}
+          key={objData.avatar}
           src={
-            contact.avatar ||
-            `https://robohash.org/${contact.id}.png?size=200x200`
+            objData.avatar ||
+            `https://robohash.org/${objData.id}.png?size=200x200`
           }
           alt="Avatar"
           className="w-40 h-40 object-cover rounded-full border-4 border-gray-200"
@@ -28,30 +23,30 @@ export default function Contact() {
 
       <div className="flex-1">
         <h1 className="text-3xl font-semibold flex items-center gap-2">
-          {contact.first || contact.last ? (
+          {objData.first || objData.last ? (
             <>
-              {contact.first} {contact.last}
+              {objData.first} {objData.last}
             </>
           ) : (
             <i className="text-gray-500">No Name</i>
           )}
-          <Favorite favorite={contact.favorite} />
+          <Favorite favorite={objData.favorite} />
         </h1>
 
-        {contact.twitter && (
+        {objData.twitter && (
           <p className="mt-2 text-blue-500">
             <a
               target="_blank"
-              href={`https://x.com/${contact.twitter}`}
+              href={`https://x.com/${objData.twitter}`}
               rel="noopener noreferrer"
               className="hover:underline"
             >
-              @{contact.twitter}
+              @{objData.twitter}
             </a>
           </p>
         )}
 
-        {contact.notes && <p className="mt-4 text-gray-700">{contact.notes}</p>}
+        {objData.notes && <p className="mt-4 text-gray-700">{objData.notes}</p>}
 
         <div className="mt-6 flex gap-4">
           <Form action="edit">
@@ -80,6 +75,12 @@ export default function Contact() {
           </Form>
         </div>
       </div>
+      <div>
+          {/* other code */}
+          <Form method="post">
+            <button type="submit">New</button>
+          </Form>
+        </div>
     </div>
   );
 }
