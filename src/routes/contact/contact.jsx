@@ -1,10 +1,15 @@
-import { Form, useLoaderData } from "react-router-dom";
-
+import { Form, useLoaderData, useNavigation } from "react-router-dom";
+import LoaderAnimation from "../../utils/LoaderAnimation";
 
 export default function objData() {
-  const data=useLoaderData();
-  const {objData}=data;
-  return (
+  const data = useLoaderData();
+  const navigation = useNavigation();
+  const { objData } = data;
+  console.log(navigation.state, "navigationstate");
+
+  return navigation.state == "loading" ? (
+    <LoaderAnimation/>
+  ) : (
     <div
       id="objData"
       className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md flex gap-6 items-start"
@@ -75,12 +80,6 @@ export default function objData() {
           </Form>
         </div>
       </div>
-      <div>
-          {/* other code */}
-          <Form method="post">
-            <button type="submit">New</button>
-          </Form>
-        </div>
     </div>
   );
 }
