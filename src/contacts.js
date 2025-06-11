@@ -56,3 +56,17 @@ export const sendDataWRTId = (id) => {
     }, 2000);
   });
 };
+
+export const createContact = (obj) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        contacts.push(obj);
+        console.log(contacts);
+        resolve({ status: "success", data: obj, total: contacts.length });
+      } catch {
+        reject("Data Passing erro");
+      }
+    }, 2000);
+  });
+};
