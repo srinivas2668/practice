@@ -9,7 +9,7 @@ const Edit = () => {
 
   const onEditHandling = (obj) => {
     const data = { ...obj, type: "update" };
-    console.log(data,'datadata')
+
     fetch.submit(data, {
       method: "PATCH",
       encType:'application/json'
@@ -18,8 +18,6 @@ const Edit = () => {
 
   return (
     <Form
-      method="post"
-      id="contact-form"
       className="p-6 max-w-lg mx-auto bg-white shadow-lg rounded-lg space-y-6"
     >
       {console.log(form,'formform')}
